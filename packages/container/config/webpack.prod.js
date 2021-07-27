@@ -9,7 +9,8 @@ const prodConfig = {
     // javascript files are minified and optimized
     mode:'production',
     output:{
-        filename:'[name].[contenthash].js' //template for naming files and hash the contents of the files
+        filename:'[name].[contenthash].js', //template for naming files and hash the contents of the files
+        publicPath: '/container/latest/'
     },
     plugins:[
         new ModuleFederationPlugin({
