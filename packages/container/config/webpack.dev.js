@@ -4,6 +4,9 @@ const commonConfig = require('./webpack.common');
 
 const devConfig ={
     mode:'development',
+    output:{
+        publicPath:'https://localhost:8080/'
+    },
     devServer:{
         port: 8080,
         historyApiFallback:{
@@ -14,7 +17,8 @@ const devConfig ={
         new ModuleFederationPlugin({
             name:'container',
             remotes:{
-                marketing:'marketing@http://localhost:8081/remoteEntry.js'
+                marketing:'marketing@http://localhost:8081/remoteEntry.js',
+                auth:'auth@htp://localhost:8082/remoteEntry.js'
             },
             shared:['react','react-dom']
         })

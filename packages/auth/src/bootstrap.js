@@ -1,15 +1,17 @@
-import React from 'react';
+import React,{lazy, Suspense} from 'react';
 import ReactDOM from 'react-dom';
 import App from "./app";
 import {createMemoryHistory, createBrowserHistory} from 'history';
 
 
-const mount =(el,{onNavigate, defaultHistory}) => {
-    const history = defaultHistory || createMemoryHistory();
+const mount =(el,{onSignIn, onNavigate, defaultHistory, initialPath}) => {
+    const history = defaultHistory || createMemoryHistory({
+        initialEntries:[initialPath]
+    });
     if(onNavigate) history.listen(onNavigate(location));
 
     ReactDOM.render(
-        <App history={history} />,
+        <App onSignIn={onSignIn} history={history} />,
         el
     )
     return {
@@ -24,7 +26,7 @@ const mount =(el,{onNavigate, defaultHistory}) => {
 
 
 if(process.env.NODE_ENV === 'development' && document.querySelector('#marketing-root') ){
-    mount(document.querySelector('#marketing-root'),{defaultHistory: createBrowserHistory()})
+    mount(document.querySelector('#auth-dev-root'),{defaultHistory: createBrowserHistory()})
 }
 
 export {mount};
