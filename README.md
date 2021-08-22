@@ -1,2 +1,2 @@
 # micro-frontends
-My code along notes from Udemy course - https://www.udemy.com/course/microfrontend-course/
+Using web-pack's module federation package to build scalable front end applications using just javascript and reactjs. 
